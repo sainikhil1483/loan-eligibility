@@ -1,0 +1,275 @@
+
+
+:root {
+  --primary: #007bff;
+  --accent: #00aaff;
+  --bg: #f6f8fb;
+  --card-radius: 10px;
+}
+
+body {
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: #222;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* NAV */
+.navbar {
+  box-shadow: 0 2px 8px rgba(3, 24, 66, 0.08);
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+}
+
+/* HERO */
+.hero-section {
+  min-height: 250px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #fff;
+  padding: 2rem 0;
+}
+.hero-section h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+.hero-section p {
+  font-size: 0.95rem;
+}
+.hero-icon {
+  font-size: 80px;
+  opacity: 0.1;
+}
+
+/* Center form area */
+#predict .card {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid var(--primary);
+  border-radius: 10px; /* smooth corners */
+  box-shadow: 0 0 12px  rgba(31, 88, 141, 0.25); /* gentle blue glow */
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+#predict .card:hover {
+  box-shadow: 0 0 15px rgba rgba(31, 88, 141, 0.25); /* slightly stronger on hover */
+}
+
+/* Prediction Result Card */
+#predictionResult {
+  max-width: 800px;
+  margin: 20px auto;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  box-shadow: 0 0 12px  rgba(31, 88, 141, 0.25); /* subtle hue, lighter glow */
+  transition: box-shadow 0.3s ease;
+}
+
+#predictionResult:hover {
+  box-shadow: 0 0 15px  rgba(31, 88, 141, 0.25);
+}
+
+
+/* Step Bar */
+.step-bar {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+.step-item {
+  flex: 1;
+  text-align: center;
+  padding: 6px 4px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  color: #6b7280;
+  background: #f8fafc;
+  font-size: 0.85rem;
+}
+.step-item .step-icon {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.step-item.active {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(3, 24, 66, 0.08);
+}
+.step-item.completed {
+  background: #e6f7ff;
+  color: #0b6fbf;
+}
+
+/* Card & Form */
+.card {
+  border-radius: var(--card-radius);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+.card-body {
+  padding: 1rem 1.2rem;
+}
+.form-label {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+.form-select,
+.form-control {
+  font-size: 0.88rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+}
+.form-text {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+/* Steps transition */
+.steps-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+}
+.form-step {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(25px);
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+  padding: 5px 0 12px 0;
+}
+.form-step.active {
+  left: 0;
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;
+}
+
+/* Minimal light-blue slider */
+.form-range {
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Track (the line) */
+.form-range::-webkit-slider-runnable-track {
+  background: #4dd5ff; /* light blue line */
+  height: 6px;
+  border-radius: 5px;
+}
+.form-range::-moz-range-track {
+  background: #cce5ff;
+  height: 6px;
+  border-radius: 5px;
+}
+
+/* Thumb (the circle) */
+.form-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #007bff; /* bright blue circle */
+  cursor: pointer;
+  margin-top: -5px; /* centers thumb vertically */
+}
+.form-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 6px;
+  font-size: 0.9rem;
+  padding: 0.45rem 1rem;
+  transition: all 0.25s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Summary */
+.summary-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.75rem;
+  border: 1px solid #eef6ff;
+  font-size: 0.9rem;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #f0f6ff;
+}
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+/* Result Section */
+#predictionResult {
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+.reason-block {
+  background: #f8fbff;
+  border-left: 3px solid var(--primary);
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  text-align: left;
+}
+
+/* ✅ EMI Highlight Box */
+.alert {
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.alert-success {
+  background: #e8f9f0;
+  border-left: 4px solid #1dbf73;
+  color: #137a48;
+}
+.alert-warning {
+  background: #fff8e5;
+  border-left: 4px solid #f0ad4e;
+  color: #8a6d3b;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .hero-section {
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+  .hero-section h1 {
+    font-size: 1.5rem;
+  }
+  .step-bar {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .step-item .step-label {
+    display: none;
+  }
+  #predict .card,
+  #predictionResult {
+    max-width: 95%;
+  }
+}

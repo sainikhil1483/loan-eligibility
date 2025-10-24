@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Loan Eligibility Prediction</title>
+
+  <!-- Bootstrap + icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#home">Loan Eligibility Prediction</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#predict">Predict</a></li>
+        <li class="nav-item"><a class="nav-link" href="#statistics">Statistics</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero-section d-flex align-items-center text-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <h1 class="display-5 fw-bold">Smart Loan Assessment</h1>
+        <p class="lead mb-4">AI-powered loan eligibility predictions with clear reasons and personalized improvement tips.</p>
+        <a href="#predict" class="btn btn-warning btn-lg">Start Application</a>
+      </div>
+      <div class="col-lg-5 text-center">
+        <i class="fa-solid fa-chart-line hero-icon"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREDICT SECTION (wizard) -->
+<section id="predict" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">Loan Eligibility Form</h2>
+
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+
+        <div class="card shadow-sm">
+          <div class="card-body">
+
+            <!-- Step indicator (icons + labels) -->
+            <div class="step-bar mb-4">
+              <div class="step-item active" data-step="1">
+                <div class="step-icon"><i class="fa-solid fa-user"></i></div>
+                <div class="step-label">Personal</div>
+              </div>
+              <div class="step-item" data-step="2">
+                <div class="step-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="step-label">Professional</div>
+              </div>
+              <div class="step-item" data-step="3">
+                <div class="step-icon"><i class="fa-solid fa-money-bill"></i></div>
+                <div class="step-label">Financial</div>
+              </div>
+              <div class="step-item" data-step="4">
+                <div class="step-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                <div class="step-label">Review</div>
+              </div>
+            </div>
+
+            <!-- form -->
+            <form id="wizardForm" class="position-relative">
+              <!-- Steps container (for sliding) -->
+              <div class="steps-wrap">
+
+                <!-- STEP 1: Personal -->
+                <div class="form-step" data-step="1">
+                  <h5 class="mb-3">Personal Details</h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Gender</label>
+                      <select class="form-select" name="Gender" required>
+                        <option value="">Select</option><option>Male</option><option>Female</option><option>Other</option>
+                      </select>
+                      <div class="form-text">Select gender as on your ID documents.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Married</label>
+                      <select class="form-select" name="Married" required>
+                        <option value="">Select</option><option>Yes</option><option>No</option>
+                      </select>
+                      <div class="form-text">Are you married? This can affect household liabilities.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Dependents</label>
+                      <select class="form-select" name="Dependents" required>
+                        <option value="">Select</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3+">3+</option>
+                      </select>
+                      <div class="form-text">Number of people financially dependent on you.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Education</label>
+                      <select class="form-select" name="Education" required>
+                        <option value="">Select</option><option>Graduate</option><option>Not Graduate</option>
+                      </select>
+                      <div class="form-text">Highest educational qualification.</div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-end mt-4">
+                    <button type="button" class="btn btn-primary btn-next">Next →</button>
+                  </div>
+                </div>
+
+                <!-- STEP 2: Professional -->
+                <div class="form-step" data-step="2">
+                  <h5 class="mb-3">Professional Details</h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Employment Type</label>
+                      <select class="form-select" name="Employment_Type" required>
+                        <option value="">Select</option><option>Salaried</option><option>Self-Employed</option>
+                      </select>
+                      <div class="form-text">Salaried or Self-Employed.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Domain</label>
+                      <select class="form-select" name="Domain" required>
+                        <option value="">Select</option><option>IT</option><option>Banking</option><option>Healthcare</option>
+                        <option>Education</option><option>Retail</option><option>Manufacturing</option><option>Government</option>
+                        <option>Consulting</option><option>Services</option><option>Agriculture</option>
+                      </select>
+                      <div class="form-text">Industry/domain of work.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label class="form-label">Years of Experience</label>
+                      <input id="expRange" type="range" class="form-range" name="Years_of_Experience" min="0" max="40" step="0.1" value="5">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <small class="form-text">Total years of full-time experience.</small>
+                        <span id="expValue" class="badge bg-primary">5.0 years</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary btn-prev">← Back</button>
+                    <button type="button" class="btn btn-primary btn-next">Next →</button>
+                  </div>
+                </div>
+
+                <!-- STEP 3: Financial -->
+                <div class="form-step" data-step="3">
+                  <h5 class="mb-3">Financial Details</h5>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Applicant Monthly Income (₹)</label>
+                      <div class="d-flex gap-2 align-items-center">
+                        <input id="appRange" type="range" class="form-range" name="ApplicantIncome" min="5000" max="1000000" step="1000" value="40000">
+                        <input id="appInput" type="text" class="form-control w-auto" style="min-width:120px" value="40000">
+                      </div>
+                      <div class="mt-1"><span id="appDisplay" class="badge bg-primary">₹40,000</span></div>
+                      <div class="form-text">Check your salary slip (monthly gross). Use slider or type exact amount.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Co-applicant Monthly Income (₹)</label>
+                      <input type="number" class="form-control" name="CoapplicantIncome" min="0" step="1000" value="0">
+                      <div class="form-text">Spouse/co-applicant monthly income (enter 0 if none).</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Loan Amount (₹)</label>
+                      <div class="d-flex gap-2 align-items-center">
+                        <input id="loanRange" type="range" class="form-range" name="LoanAmount" min="50000" max="10000000" step="10000" value="500000">
+                        <input id="loanInput" type="text" class="form-control w-auto" style="min-width:120px" value="500000">
+                      </div>
+                      <div class="mt-1"><span id="loanDisplay" class="badge bg-primary">₹5,00,000</span></div>
+                      <div class="form-text">Total amount you want to borrow.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Loan Term (months)</label>
+                      <select class="form-select" name="Loan_Amount_Term" required>
+                        <option value="">Select</option>
+                        <option value="120">120 (10 yrs)</option>
+                        <option value="180">180 (15 yrs)</option>
+                        <option value="240">240 (20 yrs)</option>
+                        <option value="300">300 (25 yrs)</option>
+                        <option value="360">360 (30 yrs)</option>
+                      </select>
+                      <div class="form-text">Repayment period in months.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Interest Rate (%)</label>
+                      <input id="rateRange" type="range" class="form-range" name="Interest_Rate" min="5" max="20" step="0.1" value="10">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <small class="form-text">Expected interest rate.</small>
+                        <span id="rateDisplay" class="badge bg-primary">10.0%</span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Credit History</label>
+                      <select class="form-select" name="Credit_History" required>
+                        <option value="">Select</option><option value="1">Good (1) - No defaults</option><option value="0">Poor (0) - Missed payments/no history</option>
+                      </select>
+                      <div class="form-text">Check credit bureau (CIBIL) status for 1/0.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label">Property Area</label>
+                      <select class="form-select" name="Property_Area" required>
+                        <option value="">Select</option><option>Urban</option><option>Semiurban</option><option>Rural</option>
+                      </select>
+                      <div class="form-text">Location type for collateral/property.</div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary btn-prev">← Back</button>
+                    <button type="button" class="btn btn-primary" id="btnReview">Review Application</button>
+                  </div>
+                </div>
+
+                <!-- STEP 4: Review -->
+                <div class="form-step" data-step="4">
+                  <h5 class="mb-3">Review Application</h5>
+                  <div id="reviewSummary" class="summary-card mb-3"></div>
+
+                  <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary btn-prev">← Edit</button>
+                    <button type="button" class="btn btn-success" id="btnSubmit">Predict</button>
+                  </div>
+                </div>
+
+              </div> <!-- .steps-wrap -->
+            </form>
+
+          </div> <!-- card-body -->
+        </div> <!-- card -->
+
+        <!-- RESULT area (below the form) -->
+        <div id="predictionResult" class="card shadow-sm mt-4" style="display:none;">
+          <div class="card-body">
+            <h4 id="resultTitle" class="mb-3"></h4>
+            <div id="resultIntro" class="mb-2 text-muted"></div>
+
+            <div id="resultReasons" class="mb-3"></div>
+
+            <div id="resultImprovements" class="mb-3"></div>
+
+            <div class="text-center mt-3">
+              <button id="btnAgain" class="btn btn-outline-primary">Predict Again</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATISTICS, ABOUT, CONTACT (kept simple placeholders) -->
+<section id="statistics" class="py-5">
+  <div class="container">
+    <h3 class="text-center mb-4">Dataset Statistics</h3>
+    <div class="row g-3">
+
+      <!-- Plot 1: Loan Status Distribution -->
+      <div class="col-md-4 d-flex">
+        <div class="card p-3 w-100 d-flex flex-column align-items-center justify-content-between">
+          <img src="{{ url_for('static', filename='images/loan_status_pie.png') }}" 
+               class="img-fluid rounded mb-3" alt="Loan Status Distribution" 
+               style="height:250px; object-fit:contain;">
+          <p class="text-center text-primary mb-0">Overall Loan Approval Rate</p>
+        </div>
+      </div>
+
+      <!-- Plot 2: Credit History Impact -->
+      <div class="col-md-4 d-flex">
+        <div class="card p-3 w-100 d-flex flex-column align-items-center justify-content-between">
+          <img src="{{ url_for('static', filename='images/credit_history_bar.png') }}" 
+               class="img-fluid rounded mb-3" alt="Credit History Impact" 
+               style="height:250px; object-fit:contain;">
+          <p class="text-center text-primary mb-0">Credit History Impact on Loan Approval</p>
+        </div>
+      </div>
+
+      <!-- Plot 3: Feature Importances -->
+      <div class="col-md-4 d-flex">
+        <div class="card p-3 w-100 d-flex flex-column align-items-center justify-content-between">
+          <img src="{{ url_for('static', filename='images/adaboost_feature_importance.png') }}" 
+               class="img-fluid rounded mb-3" alt="Feature Importances" 
+               style="height:250px; object-fit:contain;">
+          <p class="text-center text-primary mb-0">Top Features Influencing Approval</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<section id="about" class="py-5 bg-light">
+  <div class="container">
+    <h3>About</h3>
+    <p>
+      <strong>AI-Driven Loan Approval: Forecasting Eligibility from Financial Records</strong><br>
+      This project predicts loan eligibility using an <strong>AdaBoost Machine Learning Model</strong>, 
+      analyzing applicant financial details to forecast approval outcomes and provide insights for improvement.
+    </p>
+    <p class="mb-1"><strong>Team Members:</strong></p>
+    <ul class="mb-3">
+      <li>R. Shiva Naga Chander (22EG105A63)</li>
+      <li>S. Dheeraj Sai (22EG105A54)</li>
+      <li>M. Nikhil Reddy (22EG105A37)</li>
+      <li>K. Sai Nikhil (22EG105A33)</li>
+    </ul>
+    <p class="mb-1"><strong>Project Guide:</strong> Dr. Kamalakar Ramineni</p>
+    <p class="mb-1"><strong>Department:</strong> Computer Science and Engineering</p>
+    <p class="mb-1"><strong>Institution:</strong> Anurag University</p>
+   
+  </div>
+</section>
+
+
+<section id="contact" class="py-4 bg-dark text-center text-white">
+  <div class="container">
+    <h3 class="mb-3">Contact Us</h3>
+    <p class="mb-4 text-white-50">
+      Contact our team for assistance with your loan eligibility result or feedback.
+    </p>
+
+    <!-- Secure contact form using FormSubmit -->
+    <form action="https://formsubmit.co/22eg105a63@anurag.edu.in" method="POST" class="d-inline-block" style="max-width:500px; width:100%;">
+      <input type="hidden" name="_subject" value="Loan Eligibility Contact Form">
+      <input type="hidden" name="_captcha" value="false">
+      
+      <div class="mb-3">
+        <input type="email" name="email" class="form-control" placeholder="Your email address" required>
+      </div>
+      <div class="mb-3">
+        <textarea name="message" class="form-control" rows="3" placeholder="Write your query or feedback..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-warning px-4">Send Message</button>
+    </form>
+  </div>
+</section>
+
+
+
+
+<footer class="py-3 bg-dark text-center text-white">
+  © 2025 Loan Eligibility Prediction | Mini Project - Anurag University
+</footer>
+
+<!-- scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
